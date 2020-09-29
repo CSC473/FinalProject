@@ -14,6 +14,10 @@ $ python3 -m venv myvenv
 ```
 $ source myvenv/bin/activate
 ```
+If this fails try this command instead:
+```
+. myvenv/bin/activate
+```
 4. Install Django (only required on initial setup)
 ```
 $ pip install Django
