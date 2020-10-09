@@ -6,8 +6,8 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-from .models import * 
-from .utils import Calendar 
+from calendar_monthly_view.models import * 
+from calendar_monthly_view.utils import Calendar 
 
 class CalendarView(generic.ListView):
     model = Event 
@@ -17,7 +17,7 @@ class CalendarView(generic.ListView):
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar 
-        d = get_date(self.request.GET.get('day', None))
+        d = get_date(self.request.GET.get('month', None))
 
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
@@ -27,8 +27,8 @@ class CalendarView(generic.ListView):
         return context
     
 
-def monthlyView(req_month):
-    if req_month:
-        year, month = (int(x) for x in req_month.split('-'))
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split("-"))
         return date(year, month, day = 1)
     return datetime.today()
