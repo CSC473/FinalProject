@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import TemplateView # new
+from register import views as v
 from calendar_monthly_view import views
 
 urlpatterns = [
@@ -23,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
+    path('register/', v.register, name='register'),
 ]
