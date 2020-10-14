@@ -1,8 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
 
-<head>
+ {% block content %}
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,14 +12,9 @@
     crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'static/styles.css' %}">
   <title>Django Calendar App</title>
-</head>
-<body>
 
-  <h1 class="title">{% block title %}{% endblock %}</h1>
+  <h1 class="title">{% block title %}Django Calendar App{% endblock %}</h1>
   <hr>
-
-  {% block content %}
-  {% endblock %}
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -34,6 +28,4 @@
   {% block script %}
   {{calendar}}
   {% endblock %}
-  
-</body>
-</html>
+  {% endblock %}
