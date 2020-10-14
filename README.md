@@ -22,14 +22,19 @@ If this fails try this command instead:
 ```
 $ pip install Django
 ```
-5. Make migrations (only required on inital setup)
+5. Install Crispy Form
+```
+pip install django-crispy-forms
+```
+
+6. Make migrations (only required on inital setup)
 ```
 $ python3 manage.py makemigrations
 $ python3 manage.py migrate
 ```
-6. Launch Final Project
+7. Launch Final Project
 ```
 $ python3 manage.py runserver
 ```
-7. Open browser and navigate to local server
+8. Open browser and navigate to local server
 (http://localhost:8000/)
