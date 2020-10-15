@@ -13,7 +13,7 @@ input a {
   z-index: 1;
   top: 20px;
   left: 10px;
-  background: rgb(59, 169, 202);
+  background: rgb(168, 234, 243);
   overflow-x: hidden;
   padding: 8px 0;
   height: fit-content;
@@ -23,7 +23,7 @@ input a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 22px;
-  color: #f8f7f7;
+  color: #131211;
   display: block;
 }
 
@@ -32,9 +32,9 @@ input a {
 }
 
 .button {
-    background-color: rgb(59, 169, 202);
+    background-color:  rgb(168, 234, 243);
     border: none;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;

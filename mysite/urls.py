@@ -22,7 +22,7 @@ from calendar_monthly_view import views
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
     path('register/', v.register, name='register'),
 ]
