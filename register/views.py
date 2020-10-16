@@ -12,4 +12,4 @@ def register(response):
     else:
 	    form = RegisterForm()
 
-    return render(response, "register/register.html", {"form":form})
+    return render(response, "register.html", {"form":form})
