@@ -22,11 +22,9 @@ class CalendarView(generic.ListView):
 
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
-
+        
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) 
-        
-        d = get_date(self.request.GET.get('month', None))
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         return context
