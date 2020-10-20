@@ -18,6 +18,7 @@ from django.urls import include, path
 from django.views.generic.base import TemplateView # new
 from register import views as v
 from calendar_monthly_view import views
+from user_profile import views as up
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
     path('register/', v.register, name='register'),
+    path('event/', views.event, name='event'),
+    path('profile/', up.profile, name='profile'),
 ]

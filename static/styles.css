@@ -114,3 +114,17 @@ a {
 .clearfix {
   margin: 15px;
 }
+
+/* Add task CSS */
+.addtask_form {
+  margin: auto;
+}
+
+.addtask_form input, .addtask_form select, .addtask_form textarea {
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  outline: none;
+  background: none;
+  padding: 5px;
+  width: 100%;
+}

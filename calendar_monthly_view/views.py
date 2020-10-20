@@ -8,6 +8,7 @@ import calendar
 
 from calendar_monthly_view.models import * 
 from calendar_monthly_view.utils import Calendar 
+from .forms import EventForm
 
 class CalendarView(generic.ListView):
     model = Event 
@@ -48,3 +49,16 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split("-"))
         return date(year, month, day = 1)
     return datetime.today()
+
+def event(request, event_id=None):
+    instance = Event()
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
+        instance = Event()
+    
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        #return HttpResponseRedirect(reverse("calendar_monthly_view:calendar"))
+    return render(request, "event.html", {'form': form})
