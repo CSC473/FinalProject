@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for ins in instance %}
+    Title: {{ ins.title }}
+    Description: {{ ins.description }}
+    Due Date: {{ ins.end_time }}
+    <br>
+{% endfor %}
+
+{% endblock %}

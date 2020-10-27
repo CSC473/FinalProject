@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
+    path('view_event', views.view_event, name='view_event'),
     path('register/', v.register, name='register'),
     path('event/', views.event, name='event'),
     path('profile/', up.profile, name='profile'),
