@@ -24,8 +24,10 @@ class CalendarView(generic.ListView):
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
         
-        html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.formatweekly(withyear=True)
+        #html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) 
+
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         return context
@@ -62,7 +64,31 @@ def event(request, event_id=None):
         #return HttpResponseRedirect(reverse("calendar_monthly_view:calendar"))
     return render(request, "event.html", {'form': form})
 
+
 def view_event(request):
     instance = Event.objects.all()
     return render(request, "view_event.html", {'instance': instance})
     
+
+class WeeklyView(generic.ListView):
+    model = Event 
+    template_name = 'weekly.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar 
+        d = get_date(self.request.GET.get('month', None))
+
+        #Use today's year and date for the Calendar 
+        cal = Calendar(d.year, d.month)
+        
+        html_cal = cal.formatweekly(withyear=True)
+        events = Event.objects.filter(end_time__year = d.year, end_time__month = d.month)
+        context['calendar_week'] = mark_safe(html_cal) 
+
+        #context['prev_week'] = prev_week(d)
+        #context['next_week'] = next_week(d)
+
+        return context
+
