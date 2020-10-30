@@ -24,8 +24,7 @@ class CalendarView(generic.ListView):
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
         
-        html_cal = cal.formatweekly(withyear=True)
-        #html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) 
 
         context['prev_month'] = prev_month(d)
