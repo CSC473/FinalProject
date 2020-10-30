@@ -10,6 +10,7 @@ from calendar_monthly_view.models import *
 from calendar_monthly_view.utils import Calendar 
 from .forms import EventForm
 
+
 class CalendarView(generic.ListView):
     model = Event 
     template_name = 'monthly.html'
@@ -64,6 +65,11 @@ def event(request, event_id=None):
     return render(request, "event.html", {'form': form})
 
 
+def view_event(request):
+    instance = Event.objects.all()
+    return render(request, "view_event.html", {'instance': instance})
+    
+
 class WeeklyView(generic.ListView):
     model = Event 
     template_name = 'weekly.html'
@@ -85,3 +91,4 @@ class WeeklyView(generic.ListView):
         #context['next_week'] = next_week(d)
 
         return context
+

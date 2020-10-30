@@ -13,6 +13,7 @@
 <body>
   <main>
     <!-- Side navigation -->
+    {% block nav %}
     <div class="sidenav">
       <nav_bar>
         <it><a href="/">Home</a></it>
@@ -23,6 +24,7 @@
         <it><a href="/">Log Out</a></it>
       </nav_bar>
     </div>
+    {% endblock %}
 
 
     <div id="content" name="content" class="main">
