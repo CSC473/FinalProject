@@ -51,4 +51,3 @@ class Calendar(HTMLCalendar):
                 if date == current:
                     cal += f'{self.formatweek(week, events)}\n'
         return cal
-    

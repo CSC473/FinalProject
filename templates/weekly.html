@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<h1 class="title">{% block title %}Django Calendar App{% endblock %}</h1>
+<hr>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<style>
+    /* CSS for calendar */
+    .calendar td {
+        width: 200px;
+        height: 300px;
+        padding: 20px 0px 0px 5px;
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'calendar_week' %}?{{ prev_week }}"> Previous Week </a>
+    <a class="btn btn-info right" href="{% url 'calendar_week' %}?{{ next_week }} "> Next Week </a>
+</div>
+
+{% block script %}
+{{calendar_week}}
+{% endblock %}
+
+{% endblock %}
