@@ -16,14 +16,14 @@ class CalendarView(generic.ListView):
     template_name = 'monthly.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(CalendarView,self).get_context_data(**kwargs)
 
         # use today's date for the calendar 
         d = get_date(self.request.GET.get('month', None))
 
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
-        
+        context['instance'] = Event.objects.all()
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) 
 
