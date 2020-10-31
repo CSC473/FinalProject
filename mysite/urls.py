@@ -29,5 +29,6 @@ urlpatterns = [
     path('weekly_calendar/', views.WeeklyView.as_view(), name ='calendar_week'),
     path('register/', v.register, name='register'),
     path('event/', views.event, name='event'),
+    path('event_edit/', include('calendar_monthly_view.urls'), name='event_edit'),
     path('profile/', up.profile, name='profile'),
 ]
