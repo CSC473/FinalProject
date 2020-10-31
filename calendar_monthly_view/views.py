@@ -10,7 +10,6 @@ from calendar_monthly_view.models import *
 from calendar_monthly_view.utils import Calendar 
 from .forms import EventForm
 
-
 class CalendarView(generic.ListView):
     model = Event 
     template_name = 'monthly.html'
@@ -30,7 +29,7 @@ class CalendarView(generic.ListView):
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         return context
-    
+
 def prev_month(d):
     first = d.replace(day=1)
     prev_month = first - timedelta(days=1)
@@ -63,7 +62,6 @@ def event(request, event_id=None):
         #return HttpResponseRedirect(reverse("calendar_monthly_view:calendar"))
     return render(request, "event.html", {'form': form})
 
-
 def view_event(request):
     instance = Event.objects.all()
     return render(request, "view_event.html", {'instance': instance})
@@ -75,8 +73,6 @@ def event_delete(request, pk):
         return HttpResponseRedirect(reverse('view_event'))
 
     return render(request, "view_event.html")
-
-    
 
 class WeeklyView(generic.ListView):
     model = Event 
