@@ -67,6 +67,15 @@ def event(request, event_id=None):
 def view_event(request):
     instance = Event.objects.all()
     return render(request, "view_event.html", {'instance': instance})
+
+def event_delete(request, pk):
+    instance = get_object_or_404(Event, pk= pk)
+    if request.method == 'POST':
+        instance.delete()
+        return HttpResponseRedirect(reverse('view_event'))
+
+    return render(request, "view_event.html")
+
     
 
 class WeeklyView(generic.ListView):
