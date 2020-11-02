@@ -22,19 +22,27 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!-- <iframe src="{% url 'view_event' %}" title="View Tasks"></iframe>  -->
-{% for ins in instance %}
-    <h1>Title: <h2>{{ ins.title }}</h2></h1>
-    <p>Description: {{ ins.description }}</p>
-    <p>Due Date: {{ ins.end_time }}</p>
-    <br>
-{% endfor %}
-<div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
-  <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }} "> Next Month </a>
-</div>
-  {% block script %}
-  {{calendar}}
-  {% endblock %}
+<div class="row">
+  <div class="col-3">
+    {% for ins in instance %}
+      <h1>Title: <h2>{{ ins.title }}</h2></h1>
+      <p>Description: {{ ins.description }}</p>
+      <p>Due Date: {{ ins.end_time }}</p>
+      <form action="{% url 'event_delete' ins.id %}" method="POST">
+        {% csrf_token %}
+        <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+      </form>
+      <br>
+    {% endfor %}
+  </div>
+  <div class ="col-9">
+    <div class="clearfix">
+      <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
+      <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }} "> Next Month </a>
+    </div>
+    {% block script %}
+    {{calendar}}
+    {% endblock %}
+  </div>
 
 {% endblock %} 
