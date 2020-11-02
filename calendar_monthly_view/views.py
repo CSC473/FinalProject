@@ -67,9 +67,6 @@ def event(request, event_id=None):
 def view_event(request):
     instance = Event.objects.all()
     return render(request, "view_event.html", {'instance': instance})
-<<<<<<< Updated upstream
-    
-=======
 
 def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
@@ -78,7 +75,7 @@ def event_delete(request, pk):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
     #return render(request, "view_event.html")
->>>>>>> Stashed changes
+
 
 class WeeklyView(generic.ListView):
     model = Event 
