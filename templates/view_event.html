@@ -7,9 +7,7 @@
     <h1>Title: <h2>{{ ins.title }}</h2></h1>
     <p>Description: {{ ins.description }}</p>
     <p>Due Date: {{ ins.end_time }}</p>
-    <p>Due Date: {{ ins.completed }}</p>
     <p>Completed: {{ ins.completed }}</p>
-
     <div class="row justify-content-start">
         <div class="col-4">
             <form action="{% url 'event_complete' ins.id %}" method="POST">
