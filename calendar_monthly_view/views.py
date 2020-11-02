@@ -67,7 +67,18 @@ def event(request, event_id=None):
 def view_event(request):
     instance = Event.objects.all()
     return render(request, "view_event.html", {'instance': instance})
+<<<<<<< Updated upstream
     
+=======
+
+def event_delete(request, pk):
+    instance = get_object_or_404(Event, pk= pk)
+    if request.method == 'POST':
+        instance.delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        
+    #return render(request, "view_event.html")
+>>>>>>> Stashed changes
 
 class WeeklyView(generic.ListView):
     model = Event 
@@ -91,3 +102,13 @@ class WeeklyView(generic.ListView):
 
         return context
 
+def event_complete(request, pk):
+    instance = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+        if instance.completed == False: #if task completed, change to true
+            instance.completed = True
+            instance.save(update_fields=['completed'])
+        else:
+            instance.completed = False
+            instance.save(update_fields=['completed'])
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

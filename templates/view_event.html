@@ -7,7 +7,29 @@
     <h1>Title: <h2>{{ ins.title }}</h2></h1>
     <p>Description: {{ ins.description }}</p>
     <p>Due Date: {{ ins.end_time }}</p>
+<<<<<<< Updated upstream
     <p>Due Date: {{ ins.completed }}</p>
+=======
+    <p>Completed: {{ ins.completed }}</p>
+
+    <div class="row justify-content-start">
+        <div class="col-4">
+            <form action="{% url 'event_complete' ins.id %}" method="POST">
+                {% csrf_token %}
+                <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
+                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+        
+            </form>
+        </div>
+        <div class="col-4">
+            <form action="{% url 'event_delete' ins.id %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+            </form>
+        </div>
+    </div>
+    
+>>>>>>> Stashed changes
     <br>
 {% endfor %}
 
