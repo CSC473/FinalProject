@@ -2,16 +2,59 @@
 {% block nav %}{% endblock %}
 
 {% block content %}
-
-    {% for ins in instance %}
-      <h1>Title: <h2>{{ ins.title }}</h2></h1>
-      <p>Description: {{ ins.description }}</p>
-      <p>Due Date: {{ ins.end_time }}</p>
-      <form action="{% url 'event_delete' ins.id %}" method="POST">
-        {% csrf_token %}
-        <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-      </form>
-      <br>
-    {% endfor %}
+<!-- In Progress Completed Overdue -->
+<div class="row">
+	<div class="col mr-md-2 border border-warning" style="height: 500px;">
+	  <h3 class="text-center text-white-50 mb-0 bg-warning">In Progress...</h3>
+	  <div class="overflow-auto p-2" style="height: 450px;">
+	      {% for ins in instance %}
+	      	{% if ins.completed is False %}
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
+		    {% endif %}
+	      {% endfor %}
+  	 </div>
+  </div>
+  <div class="col border border-success" style="height: 500px;">
+  	 <h3 class="text-center text-white-50 mb-0 bg-success">Completed</h3>
+  	 <div class="overflow-auto p-2" style="height: 450px;">
+	  	{% for ins in instance %}
+	      	{% if ins.completed is True %}
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
+		    {% endif %}
+	      {% endfor %}
+     </div>
+  </div>
+  <div class="col ml-md-2 border border-danger" style="height: 500px;">
+  	 <h3 class="text-center text-white-50 mb-0 bg-danger">PAST DUE!</h3>
+  	 <div class="overflow-auto p-2" style="height: 450px;">
+	  	{% for ins in instance %}
+	      	{% if ins.completed is True %}
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
+		    {% endif %}
+	      {% endfor %}
+     </div>
+  </div>
+</div>
 
 {% endblock %}
