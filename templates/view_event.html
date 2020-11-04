@@ -8,7 +8,7 @@
 	  <h3 class="text-center text-white-50 mb-0 bg-warning">In Progress...</h3>
 	  <div class="overflow-auto p-2" style="height: 450px;">
 	      {% for ins in instance %}
-	      	{% if ins.completed is False %}
+	      	{% if ins.completed is False and not ins.is_past_due %}
 		        <h4>Title: {{ ins.title }}</h4>
 		        <p>Description: {{ ins.description }}</p>
 		        <p>Due Date: {{ ins.end_time }}</p>
@@ -42,7 +42,7 @@
   	 <h3 class="text-center text-white-50 mb-0 bg-danger">PAST DUE!</h3>
   	 <div class="overflow-auto p-2" style="height: 450px;">
 	  	{% for ins in instance %}
-	      	{% if ins.completed is True %}
+	      	{% if ins.completed is False and ins.is_past_due %}
 		        <h4>Title: {{ ins.title }}</h4>
 		        <p>Description: {{ ins.description }}</p>
 		        <p>Due Date: {{ ins.end_time }}</p>
