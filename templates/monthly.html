@@ -30,7 +30,6 @@
           <h4>Title: <span>{{ ins.title }}</span></h4>
           <h4>Description: <span>{{ ins.description }}</span></h4>
           <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
-          <p>Due Date: {{ ins.completed }}</p>
           <form action="{% url 'event_delete' ins.id %}" method="POST">
             {% csrf_token %}
             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
