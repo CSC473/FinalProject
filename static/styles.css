@@ -15,7 +15,7 @@ input a {
   background: rgb(168, 234, 243);
   overflow-x: hidden;
   padding: 8px 0;
-  height: fit-content;
+  height: 100%;
 }
 
 .sidenav a {
