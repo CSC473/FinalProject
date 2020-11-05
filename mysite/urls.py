@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import include, path
 from django.views.generic.base import TemplateView # new
 from register import views as v
@@ -25,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
+
     path('profile/', views.view_event, name='view_event'),
     path('weekly_calendar/', views.WeeklyView.as_view(), name ='calendar_week'),
     path('register/', v.register, name='register'),
@@ -32,5 +34,4 @@ urlpatterns = [
     path('event_edit/', include('calendar_monthly_view.urls'), name='event_edit'),
     path('profileN/', up.profile, name='profile'),
     url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
-
 ]

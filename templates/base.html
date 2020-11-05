@@ -13,6 +13,7 @@
 <body>
   <main>
     <!-- Side navigation -->
+    {% block nav %}
     <div class="sidenav">
       <nav_bar>
         <it><a href="/">Home</a></it>
@@ -23,11 +24,12 @@
         <it><a href="/">Log Out</a></it>
       </nav_bar>
     </div>
+    {% endblock %}
 
 
     <div id="content" name="content" class="main">
       <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-9">
           <h1 class="mt-2">Schedule It!</h1>
           <hr class="mt-0 mb-4">
           {% block content %}
