@@ -3,8 +3,7 @@ sudo: required
 addons: 
 	sonarcloud: 
 		organization: "csc473"
-		token: 
-			secure: finalproject
+
 		
 script: 
 	- sonar-scanner 
