@@ -10,7 +10,6 @@ env:
 
 install:
   - pip install -q Django==$DJANGO_VERSION
-  - python setup.py -q install
   - pip install -r requirements.txt
 addons:
   sonarcloud:
