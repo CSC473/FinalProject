@@ -14,7 +14,7 @@ install:
 
 addons:
   sonarcloud:
-		organization: "csc473"
-		
+    organization: "csc473"
+
 script:
   - sonar-scanner
