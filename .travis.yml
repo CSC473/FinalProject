@@ -10,7 +10,7 @@ env:
 
 install:
   - pip install -q Django==$DJANGO_VERSION
-  - pip install -r requirements.txt
+
 addons:
   sonarcloud:
     organization: "csc473"
@@ -18,4 +18,4 @@ addons:
       secure: "••••••••••••••••"
 
 script:
-  - sonar-scanner
+  - pytest
