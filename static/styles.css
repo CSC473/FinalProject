@@ -15,7 +15,7 @@ input a {
   background: rgb(168, 234, 243);
   overflow-x: hidden;
   padding: 8px 0;
-  height: fit-content;
+  height: 100%;
 }
 
 .sidenav a {
@@ -42,7 +42,6 @@ input a {
     margin: 4px 2px;
     cursor: pointer;
   }
-
 
 .main {
   margin-left: 140px; /* Same width as the sidebar + left position in px */

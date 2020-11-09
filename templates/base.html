@@ -8,26 +8,31 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/styles.css">
+  <title>
+    {% block title %}Schedule It!{% endblock %}
+  </title>
 </head>
 
 <body>
   <main>
     <!-- Side navigation -->
+    {% block nav %}
     <div class="sidenav">
       <nav_bar>
         <it><a href="/">Home</a></it>
-        <it><a href="/monthly_calendar/">Monthly Calender</a></it>
+        <it><a href="/monthly_calendar/">Monthly Calendar</a></it>
         <it><a href="/weekly_calendar/">Weekly Calendar</a></it>
         <it><a href="/event/">Add Tasks</a></it>
         <it><a href="/profile/">Profile</a></it>
         <it><a href="/">Log Out</a></it>
       </nav_bar>
     </div>
+    {% endblock %}
 
 
     <div id="content" name="content" class="main">
       <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-9">
           <h1 class="mt-2">Schedule It!</h1>
           <hr class="mt-0 mb-4">
           {% block content %}
