@@ -26,11 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
-    path('view_event', views.view_event, name='view_event'),
+
+    path('profile/', views.view_event, name='view_event'),
     path('weekly_calendar/', views.WeeklyView.as_view(), name ='calendar_week'),
     path('register/', v.register, name='register'),
     path('event/', views.event, name='event'),
     path('event_edit/', include('calendar_monthly_view.urls'), name='event_edit'),
-    path('profile/', up.profile, name='profile'),
+    path('profileN/', up.profile, name='profile'),
     url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
 ]
