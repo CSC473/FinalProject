@@ -15,6 +15,7 @@
     crossorigin="anonymous">
 -->
 
+
   <title>Django Calendar App</title>
 
   <!--  <h1 class="title">{% block title %}Django Calendar App{% endblock %}</h1> <hr> -->
@@ -30,6 +31,11 @@
           <h4>Title: <span>{{ ins.title }}</span></h4>
           <h4>Description: <span>{{ ins.description }}</span></h4>
           <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
+          <form action="{% url 'event_complete' ins.id %}" method="POST">
+              {% csrf_token %}
+              <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
+              <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+          </form>
           <form action="{% url 'event_delete' ins.id %}" method="POST">
             {% csrf_token %}
             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
@@ -48,5 +54,6 @@
     {{calendar}}
     {% endblock %}
   </div>
+
 
 {% endblock %} 

@@ -32,6 +32,10 @@ urlpatterns = [
     path('register/', v.register, name='register'),
     path('event/', views.event, name='event'),
     path('event_edit/', include('calendar_monthly_view.urls'), name='event_edit'),
+
+    path('profile/', up.profile, name='profile'),
+    url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
+    url(r'^complete/(?P<pk>[0-9]+)/$', views.event_complete, name='event_complete'),
     path('profileN/', up.profile, name='profile'),
     url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
 ]

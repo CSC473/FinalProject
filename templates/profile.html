@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}My Profile{% endblock %}
 {% block content %}
-<title>My Profile</title>
-<h2 class="title">{% block title %}My Profile{% endblock %}</h2>
+<h2 class="title">My Profile</h2>
 <a href="{% url 'view_event' %}">view</a>
 {% endblock %}

@@ -76,6 +76,8 @@ def event_delete(request, pk):
 
     #return render(request, "view_event.html")
 
+
+
 class WeeklyView(generic.ListView):
     model = Event 
     template_name = 'weekly.html'
@@ -99,6 +101,18 @@ class WeeklyView(generic.ListView):
 
         return context
 
+
+def event_complete(request, pk):
+    instance = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+        if instance.completed == False: #if task completed, change to true
+            instance.completed = True
+            instance.save(update_fields=['completed'])
+        else:
+            instance.completed = False
+            instance.save(update_fields=['completed'])
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 def prev_week(d):
     prev_week = d - timedelta(days=7)
     week = 'month=' + str(prev_week.year) + '-' + str(prev_week.month)
@@ -112,4 +126,5 @@ def next_week(d):
     week = "date=" + str(next_week.year) + '-' + str(next_week.month) + '-' + str(next_week.day)
     print(week)
     return next_week
+
 
