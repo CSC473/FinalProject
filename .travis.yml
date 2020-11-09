@@ -15,6 +15,8 @@ install:
 addons:
   sonarcloud:
     organization: "csc473"
+    sonar.login: "ebc9c6818f0afa85be66e7023bdf01706b3aad94"
+    sonar.password: ""
 
 script:
   - sonar-scanner -X
