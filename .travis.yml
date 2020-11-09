@@ -22,4 +22,4 @@ addons:
 
 script:
   - sonar-scanner
-  - coverage run __init__.py
+  - coverage run calendar_monthly_view/__init__.py
