@@ -15,7 +15,7 @@ addons:
   sonarcloud:
     organization: "csc473"
     token:
-      secure: finalproject
+      secure: "••••••••••••••••"
 
 script:
   - sonar-scanner
