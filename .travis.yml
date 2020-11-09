@@ -17,4 +17,4 @@ addons:
     organization: "csc473"
 
 script:
-  - sonar-scanner
+  - sonar-scanner -X
