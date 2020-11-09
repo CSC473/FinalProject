@@ -10,6 +10,7 @@ env:
 
 install:
   - pip install -q Django==$DJANGO_VERSION
+  - pip install -U pytest
 
 addons:
   sonarcloud:
