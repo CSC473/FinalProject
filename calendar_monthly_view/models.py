@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django import forms
+from datetime import datetime
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
@@ -15,3 +16,9 @@ class Event(models.Model):
         url = reverse('cal:event_edit', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'
 
+    @property
+    def is_past_due(self):
+    	now = datetime.today().date()
+    	due = self.end_time.date()
+    	return now > due
+    
