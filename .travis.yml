@@ -25,4 +25,4 @@ addons:
 script:
   - sonar-scanner
   - coverage run calendar_monthly_view/__init__.py
-  - pytest
+  - pytest --ds=mysite/settings
