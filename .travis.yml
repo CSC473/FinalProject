@@ -16,7 +16,7 @@ addons:
   sonarcloud:
     organization: "csc473"
     token:
-      secure: "••••••••••••••••"
+      secure: "0ffcebc6dcf00bd31d656bd8f440e592c878a467"
 
 script:
   - sonar-scanner
