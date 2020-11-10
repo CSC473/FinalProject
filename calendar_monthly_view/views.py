@@ -6,12 +6,14 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 from calendar import HTMLCalendar
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import * 
 from .utils import Calendar 
 from .forms import EventForm
 
-class CalendarView(generic.ListView):
+class CalendarView(LoginRequiredMixin,generic.ListView):
+    login_url = 'login'
     model = Event 
     template_name = 'monthly.html'
 
@@ -54,6 +56,7 @@ def get_date(req_day):
         return date(year, month, day = 1)
     return datetime.today()
 
+@login_required(login_url='login')
 def event(request, event_id=None):
     instance = Event()
     if event_id:
@@ -90,7 +93,9 @@ def event_delete(request, pk):
 
     #return render(request, "view_event.html")
 
-class WeeklyView(generic.ListView):
+
+class WeeklyView(LoginRequiredMixin,generic.ListView):
+    login_url = 'login'
     model = Event 
     template_name = 'home.html'
 
@@ -127,6 +132,10 @@ def event_complete(request, pk):
             instance.save(update_fields=['completed'])
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def event_stats(request):
+    instance = Event.objects.filter(user=request.user)
+    return render(request, "profile.html")
+        
 
 def prev_week(d):
     prev_week = d - timedelta(days=7)
