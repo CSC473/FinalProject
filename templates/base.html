@@ -16,15 +16,15 @@
 <body>
   <main>
     <!-- Side navigation -->
+    
     {% block nav %}
     <div class="sidenav">
       <nav_bar>
         <it><a href="/">Home</a></it>
         <it><a href="/monthly_calendar/">Monthly Calendar</a></it>
-        <it><a href="/weekly_calendar/">Weekly Calendar</a></it>
         <it><a href="/event/">Add Tasks</a></it>
         <it><a href="/profile/">Profile</a></it>
-        <it><a href="/">Log Out</a></it>
+        <it><a href="{% url 'logout' %}">Log Out</a></it>
       </nav_bar>
     </div>
     {% endblock %}

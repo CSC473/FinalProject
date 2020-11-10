@@ -22,13 +22,12 @@ from calendar_monthly_view import views
 from user_profile import views as up
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', views.WeeklyView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('monthly_calendar/', views.CalendarView.as_view(), name ='calendar'),
 
     path('profile/', views.view_event, name='view_event'),
-    path('weekly_calendar/', views.WeeklyView.as_view(), name ='calendar_week'),
     path('register/', v.register, name='register'),
     path('event/', views.event, name='event'),
     path('event_edit/', include('calendar_monthly_view.urls'), name='event_edit'),
@@ -36,6 +35,6 @@ urlpatterns = [
     path('profile/', up.profile, name='profile'),
     url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
     url(r'^complete/(?P<pk>[0-9]+)/$', views.event_complete, name='event_complete'),
-    path('profileN/', up.profile, name='profile'),
+    #path('profileN/', up.profile, name='profile'),
     url(r'^delete/(?P<pk>[0-9]+)/$', views.event_delete, name='event_delete'),
 ]
