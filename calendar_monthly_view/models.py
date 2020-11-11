@@ -5,7 +5,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 class Event(models.Model):
-    user = models.ForeignKey(User, default="1", on_delete= models.CASCADE)
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
     end_time = models.DateTimeField()
@@ -23,5 +23,6 @@ class Event(models.Model):
     	now = datetime.today().date()
     	due = self.end_time.date()
     	return now > due
+    
 
     
