@@ -82,16 +82,8 @@ def event(request, event_id=None):
     return render(request, "event.html", {'form': form})
 
 def view_event(request):
-
     instance = Event.objects.filter(user=request.user)
-    #return render(request, "view_event.html", {'instance': instance})
-
-    #instance = Event.objects.all()
-    labels = ['In Progress', 'Complete', 'Past-Due']
-    data = [30,23,20]
-    return render(request, "view_event.html", {'instance': instance, 'labels': labels,
-        'data': data,})
-
+    return render(request, "view_event.html", {'instance': instance})
 
 def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
@@ -102,10 +94,8 @@ def event_delete(request, pk):
     #return render(request, "view_event.html")
 
 
-
 class WeeklyView(LoginRequiredMixin,generic.ListView):
     login_url = 'login'
-
     model = Event 
     template_name = 'home.html'
 

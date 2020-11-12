@@ -13,24 +13,22 @@
 	  <div class="overflow-auto p-2" style="height: 450px;">
 	      {% for ins in instance %}
 	      	{% if ins.completed is False and not ins.is_past_due %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+      
+            <form action="{% url 'event_complete' ins.id %}" method="POST">
+                {% csrf_token %}
+                <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
+                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+        
+            </form>
+      
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
 		    {% endif %}
 	      {% endfor %}
   	 </div>
@@ -40,24 +38,14 @@
   	 <div class="overflow-auto p-2" style="height: 450px;">
 	  	{% for ins in instance %}
 	      	{% if ins.completed is True %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
 		    {% endif %}
 	      {% endfor %}
      </div>
@@ -67,24 +55,14 @@
   	 <div class="overflow-auto p-2" style="height: 450px;">
 	  	{% for ins in instance %}
 	      	{% if ins.completed is False and ins.is_past_due %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
+		        <h4>Title: {{ ins.title }}</h4>
+		        <p>Description: {{ ins.description }}</p>
+		        <p>Due Date: {{ ins.end_time }}</p>
+		        <form action="{% url 'event_delete' ins.id %}" method="POST">
+		          {% csrf_token %}
+		          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+		        </form>
+		        <hr>
 		    {% endif %}
 	      {% endfor %}
      </div>
@@ -94,40 +72,8 @@
   
 </div>
 
-
 	
 	
   
-
-<!-- Pie Chart -->
-  <div id="container" style="width: 75%;">
-    <canvas id="pie-chart"></canvas>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script>
-
-    var config = {
-      type: 'pie',
-      data: {
-        datasets: [{
-          data: {{ data|safe }},
-          backgroundColor: ['yellow', 'green', 'red'],
-          label: 'Progress'
-        }],
-        labels: {{ labels|safe }}
-      },
-      options: {
-        responsive: true
-      }
-    };
-
-    window.onload = function() {
-      var ctx = document.getElementById('pie-chart').getContext('2d');
-      window.myPie = new Chart(ctx, config);
-    };
-
-  </script>
-
 
 {% endblock %}
