@@ -93,6 +93,7 @@ class WeeklyView(generic.ListView):
         #Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month)
         
+        context['instance'] = Event.objects.all()
         html_cal_week = cal.formatweekly(d, withyear=True)
         events = Event.objects.filter(end_time__year = d.year, end_time__month = d.month)
         context['calendar_week'] = mark_safe(html_cal_week) 
