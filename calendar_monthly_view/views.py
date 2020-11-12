@@ -6,12 +6,14 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 from calendar import HTMLCalendar
-
-from calendar_monthly_view.models import * 
-from calendar_monthly_view.utils import Calendar 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import * 
+from .utils import Calendar 
 from .forms import EventForm
 
-class CalendarView(generic.ListView):
+class CalendarView(LoginRequiredMixin,generic.ListView):
+    login_url = 'login'
     model = Event 
     template_name = 'monthly.html'
 
@@ -21,9 +23,12 @@ class CalendarView(generic.ListView):
         # use today's date for the calendar 
         d = get_date(self.request.GET.get('month', None))
 
+        # Filter the instances based on the user
+        context['instance'] = Event.objects.filter(user=self.request.user)
+        user = self.request.user.id
         #Use today's year and date for the Calendar 
-        cal = Calendar(d.year, d.month)
-        context['instance'] = Event.objects.all()
+        cal = Calendar(d.year, d.month, user)
+    
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) 
 
@@ -51,6 +56,7 @@ def get_date(req_day):
         return date(year, month, day = 1)
     return datetime.today()
 
+@login_required(login_url='login')
 def event(request, event_id=None):
     instance = Event()
     if event_id:
@@ -60,16 +66,32 @@ def event(request, event_id=None):
     
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
-        form.save()
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        start_time = form.cleaned_data['start_time']
+        end_time = form.cleaned_data['end_time']
+        Event.objects.get_or_create(
+            user=request.user,
+            title=title,
+            description=description,
+            start_time=start_time,
+            end_time=end_time
+        )
+        #form.save()
         return HttpResponseRedirect(reverse("calendar"))
     return render(request, "event.html", {'form': form})
 
 def view_event(request):
-    instance = Event.objects.all()
+
+    instance = Event.objects.filter(user=request.user)
+    #return render(request, "view_event.html", {'instance': instance})
+
+    #instance = Event.objects.all()
     labels = ['In Progress', 'Complete', 'Past-Due']
     data = [30,23,20]
     return render(request, "view_event.html", {'instance': instance, 'labels': labels,
         'data': data,})
+
 
 def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
@@ -79,9 +101,13 @@ def event_delete(request, pk):
 
     #return render(request, "view_event.html")
 
-class WeeklyView(generic.ListView):
+
+
+class WeeklyView(LoginRequiredMixin,generic.ListView):
+    login_url = 'login'
+
     model = Event 
-    template_name = 'weekly.html'
+    template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,12 +115,14 @@ class WeeklyView(generic.ListView):
         # use today's date for the calendar 
         d = get_date(self.request.GET.get('month', None))
         d = d.replace(day=int(datetime.now().strftime('%d')))
-
+        user = self.request.user.id
         #Use today's year and date for the Calendar 
-        cal = Calendar(d.year, d.month)
+        cal = Calendar(d.year, d.month, user)
         
         html_cal_week = cal.formatweekly(d, withyear=True)
-        events = Event.objects.filter(end_time__year = d.year, end_time__month = d.month)
+        #events = Event.objects.filter(end_time__year = d.year, end_time__month = d.month)
+        #context['instance'] = Event.objects.filter(user=self.request.user)
+
         context['calendar_week'] = mark_safe(html_cal_week) 
 
         context['prev_week'] = prev_week(d)
@@ -113,6 +141,11 @@ def event_complete(request, pk):
             instance.completed = False
             instance.save(update_fields=['completed'])
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def event_stats(request):
+    instance = Event.objects.filter(user=request.user)
+    return render(request, "profile.html")
+        
 
 def prev_week(d):
     prev_week = d - timedelta(days=7)

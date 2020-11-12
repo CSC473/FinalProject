@@ -11,7 +11,7 @@ class EventForm(ModelForm):
       'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
       'completed': CheckboxInput(attrs={'type': 'checkbox'})
     }
-    fields = '__all__'
+    fields = ('title','description','end_time','start_time','completed')
 
   def __init__(self, *args, **kwargs):
     super(EventForm, self).__init__(*args, **kwargs)
