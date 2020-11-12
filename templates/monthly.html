@@ -15,31 +15,37 @@
     crossorigin="anonymous">
 -->
 
+
   <title>Django Calendar App</title>
 
-  <h1 class="title">{% block title %}Django Calendar App{% endblock %}</h1>
-  <hr>
-
+  <!--  <h1 class="title">{% block title %}Django Calendar App{% endblock %}</h1> <hr> -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <div class="row">
-  <div class="col-3">
-    <!--<a href="{% url 'view_event' %}">view</a>
-     <iframe src="{% url 'view_event' %}" title="View Tasks"></iframe>  
-
-    {% for ins in instance %}
-        <h1>Title: <h2>{{ ins.title }}</h2></h1>
-        <p>Description: {{ ins.description }}</p>
-        <p>Due Date: {{ ins.end_time }}</p>
-        <form action="{% url 'event_delete' ins.id %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="Delete Task">
-        </form>
-        <br>
-    {% endfor %}-->
-
+  <div class="col-4 mt-5">
+    <h3 class="text-center text-white-50 mb-0" style="background: #17a2b8;">My Tasks</h3>
+    <div class="overflow-auto bg-light p-3" style="height: 58rem;">
+      {% for ins in instance %}
+        {% if ins.completed is False %}
+          <h4>Title: <span>{{ ins.title }}</span></h4>
+          <h4>Description: <span>{{ ins.description }}</span></h4>
+          <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
+          <form action="{% url 'event_complete' ins.id %}" method="POST">
+              {% csrf_token %}
+              <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
+              <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+          </form>
+          <form action="{% url 'event_delete' ins.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+          </form>
+          <hr>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-  <div class ="col-9">
+  <div class ="col-8 mt-n4">
     <div class="clearfix">
       <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
       <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }} "> Next Month </a>
@@ -48,6 +54,6 @@
     {{calendar}}
     {% endblock %}
   </div>
-</div>
+
 
 {% endblock %} 
