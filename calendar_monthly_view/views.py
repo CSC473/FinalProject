@@ -83,7 +83,11 @@ def event(request, event_id=None):
 
 def view_event(request):
     instance = Event.objects.filter(user=request.user)
-    return render(request, "view_event.html", {'instance': instance})
+    labels = ['In Progress', 'Complete', 'Past-Due']
+    data = [30,23,20]
+    return render(request, "view_event.html", {'instance': instance, 'labels': labels,
+        'data': data,})
+
 
 def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
