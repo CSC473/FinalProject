@@ -66,27 +66,44 @@ def event(request, event_id=None):
     
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
-        title = form.cleaned_data['title']
-        description = form.cleaned_data['description']
-        start_time = form.cleaned_data['start_time']
-        end_time = form.cleaned_data['end_time']
-        Event.objects.get_or_create(
-            user=request.user,
-            title=title,
-            description=description,
-            start_time=start_time,
-            end_time=end_time
-        )
-        #form.save()
+        
+        
+        form.save()
         return HttpResponseRedirect(reverse("calendar"))
     return render(request, "event.html", {'form': form})
 
 def view_event(request):
     instance = Event.objects.filter(user=request.user)
+    complete = Event.objects.filter(user=request.user, completed = True)
+    complete_count = 0
+    for c in complete:
+        complete_count += 1
+
+    past_count = 0
+    in_count = 0
+
+    now = datetime.today().date()
+    past = Event.objects.filter(user=request.user, completed= False, end_time__lte = now)
+    for p in past:
+        past_count +=1
+
+    inprogress = Event.objects.filter(user=request.user, completed= False, end_time__gte = now)
+    for i in inprogress:
+        in_count += 1
     labels = ['In Progress', 'Complete', 'Past-Due']
-    data = [30,23,20]
-    return render(request, "view_event.html", {'instance': instance, 'labels': labels,
-        'data': data,})
+    data = [in_count,complete_count, past_count]
+    total = in_count + complete_count + past_count
+    context = {
+        'instance': instance,
+        'labels': labels,
+        'data':data,
+        'in_prog': data[0],
+        'cd': data[1],
+        'pd': data[2],
+        'total': total,
+    }
+   
+    return render(request, "view_event.html",context)
 
 
 def event_delete(request, pk):
