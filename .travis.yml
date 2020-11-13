@@ -24,5 +24,5 @@ addons:
 
 script:
   - sonar-scanner
-  - coverage run calendar_monthly_view/__init__.py
+  - coverage run --omit='*/myvenv/*' manage.py test calendar_monthly_view.tests
   - pytest
