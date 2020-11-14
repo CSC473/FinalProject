@@ -67,9 +67,18 @@ def event(request, event_id=None):
     
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        start_time = form.cleaned_data['start_time']
+        end_time = form.cleaned_data['end_time']
+        Event.objects.get_or_create(
+            user=request.user,
+            title=title,
+            description=description,
+            start_time=start_time,
+            end_time=end_time
+        )
         
-        
-        form.save()
         return HttpResponseRedirect(reverse("calendar"))
     return render(request, "event.html", {'form': form})
 
@@ -133,12 +142,21 @@ class WeeklyView(LoginRequiredMixin,generic.ListView):
         
         html_cal_week = cal.formatweekly(d, withyear=True)
         #events = Event.objects.filter(end_time__year = d.year, end_time__month = d.month)
-        #context['instance'] = Event.objects.filter(user=self.request.user)
+        context['instance'] = Event.objects.filter(user=self.request.user)
 
         context['calendar_week'] = mark_safe(html_cal_week) 
 
         context['prev_week'] = prev_week(d)
         context['next_week'] = next_week(d)
+
+        now = datetime.today().date()
+        past = Event.objects.filter(user=self.request.user, completed= False, end_time__lte = now)
+        num = 0
+        for p in past:
+            num +=1
+
+
+        messages.info(self.request, 'Notification: You have ' + str(num) + ' tasks due today!')
 
         return context
 

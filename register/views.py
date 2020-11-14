@@ -11,7 +11,7 @@ def register(response):
             messages.success(response, 'You have registered successfully. Go to login page.')
             form = RegisterForm()
         else:
-            messages.error(request, 'Registration failed.')
+            messages.error(response, 'Registration failed.')
         #return redirect("/")
     else:
 	    form = RegisterForm()
