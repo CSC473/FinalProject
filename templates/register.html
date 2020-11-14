@@ -9,12 +9,31 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 
+<script>
+    setTimeout(function () {
+        if ($('#msg').length > 0) {
+            $('#msg').remove();
+        }
+    }, 2000)
+</script>
+
+
 <body>
     <main>
+        
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
         {% block title %}
         <form action="/">
             <button class="button">Schedule It!</button>
         </form>
+        
         {% endblock %}
         {% load crispy_forms_tags %}
 
