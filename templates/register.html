@@ -20,7 +20,7 @@
 
 <body>
     <main>
-        
+
         {% if messages %}
         {% for message in messages %}
         <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
@@ -48,12 +48,6 @@
                         {{ form|crispy }}
                         <button type="submit" class="btn btn-success">Register</button>
                     </form>
-                    <script type="text/JavaScript">
-                function showMessage(){
-                    var message = document.getElementById("Username").value;
-                    display_message.innerHTML= message;
-                }
-            </script>
                     {% endblock %}
 
                 </div>
