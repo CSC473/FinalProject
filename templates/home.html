@@ -3,77 +3,84 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  You have successfully logged in!
-  <a href="{% url 'logout' %}">Logout</a>
+Hi {{ user.username }}!
+You have successfully logged in!
+
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<script>
+  setTimeout(function () {
+      if ($('#msg').length > 0) {
+          $('#msg').remove();
+      }
+  }, 10000)
+</script>
+
+
+<a href="{% url 'logout' %}">Logout</a>
 
 <style>
   /* CSS for calendar */
   .calendar td {
-      width: 200px;
-      height: 300px;
-      padding: 20px 0px 0px 5px;
-      border: 1px solid black;
-      text-align: center;
+    width: 200px;
+    height: 300px;
+    padding: 20px 0px 0px 5px;
+    border: 1px solid black;
+    text-align: center;
   }
 </style>
 
-{% if message %}
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert">
-      {{ message }}
-    </div> 
-  {% endfor %}
-{% endif %}
+
 
 {% block script %}
 <div class="row">
-{{calendar_week}}
+  {{calendar_week}}
 </div>
 <div class="col">
-    <h3 class="text-center text-white-50 mb-0" style="background: #17a2b8;">My Tasks</h3>
-    <div class="overflow-auto bg-light p-3" style="height: 18rem;">
-      {% for ins in instance %}
-        {% if ins.completed is False %}
-          <h4>Title: <span>{{ ins.title }}</span></h4>
-          <h4>Description: <span>{{ ins.description }}</span></h4>
-          <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
-          <div class="row">
-            <div class="col">
-              <form action="{% url 'event_complete' ins.id %}" method="POST">
-                  {% csrf_token %}
-                  <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
-                  <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-              </form>
-            </div>
-            <div class="col">
-              <form action="{% url 'event_delete' ins.id %}" method="POST">
-                {% csrf_token %}
-                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-              </form>
-            </div>
-          </div>
-          <hr>
-        {% endif %}
-      {% endfor %}
+  <h3 class="text-center text-white-50 mb-0" style="background: #17a2b8;">My Tasks</h3>
+  <div class="overflow-auto bg-light p-3" style="height: 18rem;">
+    {% for ins in instance %}
+    {% if ins.completed is False %}
+    <h4>Title: <span>{{ ins.title }}</span></h4>
+    <h4>Description: <span>{{ ins.description }}</span></h4>
+    <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
+    <div class="row">
+      <div class="col">
+        <form action="{% url 'event_complete' ins.id %}" method="POST">
+          {% csrf_token %}
+          <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
+          <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+        </form>
+      </div>
+      <div class="col">
+        <form action="{% url 'event_delete' ins.id %}" method="POST">
+          {% csrf_token %}
+          <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+        </form>
+      </div>
     </div>
+    <hr>
+    {% endif %}
+    {% endfor %}
   </div>
+</div>
 {% endblock %}
 {% else %}
 
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
 {% endif %}
 
-  
-{% endblock %}
 
-<script>
-  setTimeout(function(){
-    if($'#msg').length > 0){
-      $('#msg').remove();
-    }
-  }, 10000)
-</script> 
+{% endblock %}
