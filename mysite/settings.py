@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 from django.contrib.messages import constants as messages
-from .secrets import *
+
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -31,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY 
+SECRET_KEY = 'f%@rowof=m$=8o^qp&s2l9hz2yi@ag8iv*=ba^6zjs58=s%apu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
