@@ -14,6 +14,7 @@ import os
 
 from django.contrib.messages import constants as messages
 
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -30,12 +31,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@3ogw9+npbh3idv@k2x+s7tbko*93w2$dlbx3avrsvkt5)&8__'
+SECRET_KEY = 'f%@rowof=m$=8o^qp&s2l9hz2yi@ag8iv*=ba^6zjs58=s%apu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
 
