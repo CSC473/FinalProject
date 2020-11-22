@@ -11,21 +11,28 @@
     <h3 class="text-center text-white-0 mb-0">My Tasks</h3>
     <div class="overflow-auto bg-light p-3" style="height: 58rem;">
       {% for ins in instance %}
-      {% if ins.completed is False %}
-      <h4>Title: <span>{{ ins.title }}</span></h4>
-      <h4>Description: <span>{{ ins.description }}</span></h4>
-      <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
-      <form action="{% url 'event_complete' ins.id %}" method="POST">
-        {% csrf_token %}
-        <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
-        <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-      </form>
-      <form action="{% url 'event_delete' ins.id %}" method="POST">
-        {% csrf_token %}
-        <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-      </form>
-      <hr>
-      {% endif %}
+
+        {% if ins.completed is False %}
+          <h4>Title: <span>{{ ins.title }}</span></h4>
+          <h4>Description: <span>{{ ins.description }}</span></h4>
+          <h5>Due Date: <span>{{ ins.end_time }}</span></h5>
+          <div class="row">
+            <div class="col">
+              <form action="{% url 'event_complete' ins.id %}" method="POST">
+                  {% csrf_token %}
+                  <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+              </form>
+            </div>
+            <div class="col">
+              <form action="{% url 'event_delete' ins.id %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+              </form>
+            </div>
+          </div>
+          <hr>
+        {% endif %}
+
       {% endfor %}
     </div>
   </div>

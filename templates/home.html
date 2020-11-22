@@ -4,13 +4,17 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<p id="msg1">
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 You have successfully logged in!
+</p>
+
 
 <a href="{% url 'logout' %}">Logout</a>
 
 &nbsp;
+
 
 {% if messages %}
 {% for message in messages %}
@@ -27,9 +31,11 @@ You have successfully logged in!
       $('#msg').remove();
     }
   }, 10000)
+  //$('#msg1').delay(2000).fadeOut(600).hide(1);
 </script>
 
 &nbsp;
+
 
 <style>
   /* CSS for calendar */
@@ -45,6 +51,7 @@ You have successfully logged in!
 
 {% block script %}
 &nbsp;
+
 <div class="col">
   <h3 class="text-center text-white-0 mb-0">My Tasks</h3>
   <div class="overflow-auto bg-light p-3" style="height: 18rem;">
@@ -57,7 +64,6 @@ You have successfully logged in!
       <div class="col">
         <form action="{% url 'event_complete' ins.id %}" method="POST">
           {% csrf_token %}
-          <!-- <input class="form-check-input" type="checkbox" onChange="this.form.submit()" value="Complete Task"> -->
           <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
         </form>
       </div>
@@ -82,6 +88,7 @@ You have successfully logged in!
 
 
 {% endblock %}
+
 {% else %}
 
 <p>You are not logged in</p>
