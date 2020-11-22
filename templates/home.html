@@ -3,32 +3,33 @@
 
 {% block title %}Home{% endblock %}
 
-
 {% block content %}
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 You have successfully logged in!
 
+<a href="{% url 'logout' %}">Logout</a>
 
+&nbsp;
 
 {% if messages %}
 {% for message in messages %}
-<div class="alert {{ message.tags }} m-2" id="msg" role="alert">
-    {{ message }}
+<div class="alert {{ message.tags }} m-2" id="msg" role="alert" 
+     style="color: white; background-color:rgb(255, 182, 193, 0.75);">
+  {{ message }}
 </div>
 {% endfor %}
 {% endif %}
 
 <script>
   setTimeout(function () {
-      if ($('#msg').length > 0) {
-          $('#msg').remove();
-      }
+    if ($('#msg').length > 0) {
+      $('#msg').remove();
+    }
   }, 10000)
 </script>
 
-
-<a href="{% url 'logout' %}">Logout</a>
+&nbsp;
 
 <style>
   /* CSS for calendar */
@@ -42,13 +43,10 @@ You have successfully logged in!
 </style>
 
 
-
 {% block script %}
-<div class="row">
-  {{calendar_week}}
-</div>
+&nbsp;
 <div class="col">
-  <h3 class="text-center text-white-50 mb-0" style="background: #17a2b8;">My Tasks</h3>
+  <h3 class="text-center text-white-0 mb-0">My Tasks</h3>
   <div class="overflow-auto bg-light p-3" style="height: 18rem;">
     {% for ins in instance %}
     {% if ins.completed is False %}
@@ -75,12 +73,19 @@ You have successfully logged in!
     {% endfor %}
   </div>
 </div>
+
+&nbsp;
+
+<div class="row">
+  {{calendar_week}}
+</div>
+
+
 {% endblock %}
 {% else %}
 
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a>
 {% endif %}
-
 
 {% endblock %}

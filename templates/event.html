@@ -6,12 +6,12 @@
 
 <h2 class="title">{% block title %}Add Task{% endblock %}</h2>
 <form method="post" class="addtask_form">
-  {% csrf_token %} 
+  {% csrf_token %}
   <table class="form form-table">
     {{ form }}
     <tr>
-    	<td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td>
-    	<td colspan="2"><button type="reset" class="btn btn-info right"> Cancel </button></td>
+      <td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td>
+      <td colspan="2"><button type="reset" class="btn btn-info right"> Cancel </button></td>
     </tr>
   </table>
 </form>
