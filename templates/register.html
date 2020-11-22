@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="data:;base64,=">
 </head>
 
-<body>
+<body class="background">
     <main>
-
         {% if messages %}
         {% for message in messages %}
         <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
@@ -20,31 +20,34 @@
         {% endfor %}
         {% endif %}
 
-        {% block title %}
-        <form action="/">
-            <button class="button">Schedule It!</button>
-        </form>
-        
-        {% endblock %}
         {% load crispy_forms_tags %}
 
         <div id="content" name="content" class="main">
+
             <div class="row justify-content-center">
-                <div class="col-8">
-                    <h1 class="mt-2">Create an Account!</h1>
+                <div>
+                    {% block title %}
+                    <form action="/">
+                        <button class="logo-button">Click to Schedule Your Tasks!</button>
+                    </form>
+                    {% endblock %}
+
+                    <h1 class="display-4" style="text-align: center; 
+                                                 margin-top: 30px;"
+                                                 >Create an Account!</h1>
                     <hr class="mt-0 mb-4">
                     {% block content %}
+
                     <form method="POST" class="form-group">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button type="submit" class="btn btn-success">Register</button>
+                        <button type="submit" class="button3">Register</button>
                     </form>
                     {% endblock %}
 
                 </div>
             </div>
         </div>
-
 
     </main>
 </body>

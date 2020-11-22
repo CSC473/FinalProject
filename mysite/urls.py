@@ -19,7 +19,6 @@ from django.urls import include, path
 from django.views.generic.base import TemplateView # new
 from register import views as v
 from calendar_monthly_view import views
-from user_profile import views as up
 
 urlpatterns = [
     path('', views.WeeklyView.as_view(), name='home'),
