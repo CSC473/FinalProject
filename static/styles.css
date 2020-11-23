@@ -35,9 +35,6 @@ input a {
 
 
 .button {
-    background-color: lightpink;
-    border:rgb(117, 80, 112);
-    color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -135,24 +132,21 @@ a {
 
 /* new addition */
 
-/* to change the background of the app change the color */
-.background {
-  background-image: repeating-linear-gradient( pink 10%, aliceblue 20%, white);
-}
-
 /* button to return to the login page from the register page */
 .logo-button {
   border-radius: 50%; 
-  border: rgb(117, 80, 112); 
-  color: white; 
-  background-color: lightpink;
   width: 400px;
   height: 70px;
   background-position:top;
 }
 
-/* only for login, register page buttons */
-.button3{
+/* to change the background of the app change the color */
+.background {
+  background-image: repeating-linear-gradient( pink 10%, aliceblue 20%, white);
+}
+
+/* for login, register page and other buttons */
+.button3, .button, .logo-button{
   border: rgb(117, 80, 112); 
   color: white; 
   background-color: lightpink;
