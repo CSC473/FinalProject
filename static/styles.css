@@ -64,13 +64,15 @@ input a {
 }
 
 .calendar tr, .calendar td {
-  border: 1px solid black;
+  border: 1px solid rgb(117, 80, 112);
 }
 
 .calendar th {
   padding: 10px;
   text-align: center;
   font-size: 18px;
+  background-color: rgb(117, 80, 112);
+  color: white;
 }
 
 .calendar td {
