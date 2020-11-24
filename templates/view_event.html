@@ -8,86 +8,86 @@
 <!-- In Progress Completed Overdue -->
 <div class="row">
 	<div class="col mr-md-2 border border-warning" style="height: 500px;">
-	  <h3 class="text-center text-white-50 mb-0 bg-warning">In Progress...</h3>
-	  <div class="overflow-auto p-2" style="height: 450px;">
-	      {% for ins in instance %}
-	      	{% if ins.completed is False and not ins.is_past_due %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
-		    {% endif %}
-	      {% endfor %}
-  	 </div>
-  </div>
-  <div class="col border border-success" style="height: 500px;">
-  	 <h3 class="text-center text-white-50 mb-0 bg-success">Completed</h3>
-  	 <div class="overflow-auto p-2" style="height: 450px;">
-	  	{% for ins in instance %}
-	      	{% if ins.completed is True %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
-		    {% endif %}
-	      {% endfor %}
-     </div>
-  </div>
-  <div class="col ml-md-2 border border-danger" style="height: 500px;">
-  	 <h3 class="text-center text-white-50 mb-0 bg-danger">PAST DUE!</h3>
-  	 <div class="overflow-auto p-2" style="height: 450px;">
-	  	{% for ins in instance %}
-	      	{% if ins.completed is False and ins.is_past_due %}
-		      <h4>Title: {{ ins.title }}</h4>
-		      <p>Description: {{ ins.description }}</p>
-		      <p>Due Date: {{ ins.end_time }}</p>
-	          <div class="row">
-	            <div class="col">
-	              <form action="{% url 'event_complete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
-	              </form>
-	            </div>
-	            <div class="col">
-	              <form action="{% url 'event_delete' ins.id %}" method="POST">
-	                {% csrf_token %}
-	                <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
-	              </form>
-	            </div>
-	          </div>
-		      <hr>
-		    {% endif %}
-	      {% endfor %}
-     </div>
-  </div>
+		<h3 class="text-center text-white-0 mb-0 bg-warning">In Progress...</h3>
+		<div class="overflow-auto p-2" style="height: 450px;">
+			{% for ins in instance %}
+			{% if ins.completed is False and not ins.is_past_due %}
+			<h4>Title: {{ ins.title }}</h4>
+			<p>Description: {{ ins.description }}</p>
+			<p>Due Date: {{ ins.end_time }}</p>
+			<div class="row">
+				<div class="col">
+					<form action="{% url 'event_complete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+					</form>
+				</div>
+				<div class="col">
+					<form action="{% url 'event_delete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+					</form>
+				</div>
+			</div>
+			<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="col border border-success" style="height: 500px;">
+		<h3 class="text-center text-white-0 mb-0 bg-success">Completed</h3>
+		<div class="overflow-auto p-2" style="height: 450px;">
+			{% for ins in instance %}
+			{% if ins.completed is True %}
+			<h4>Title: {{ ins.title }}</h4>
+			<p>Description: {{ ins.description }}</p>
+			<p>Due Date: {{ ins.end_time }}</p>
+			<div class="row">
+				<div class="col">
+					<form action="{% url 'event_complete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+					</form>
+				</div>
+				<div class="col">
+					<form action="{% url 'event_delete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+					</form>
+				</div>
+			</div>
+			<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="col ml-md-2 border border-danger" style="height: 500px;">
+		<h3 class="text-center text-white-0 mb-0 bg-danger">PAST DUE!</h3>
+		<div class="overflow-auto p-2" style="height: 450px;">
+			{% for ins in instance %}
+			{% if ins.completed is False and ins.is_past_due %}
+			<h4>Title: {{ ins.title }}</h4>
+			<p>Description: {{ ins.description }}</p>
+			<p>Due Date: {{ ins.end_time }}</p>
+			<div class="row">
+				<div class="col">
+					<form action="{% url 'event_complete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-success btn-sm" type="submit" value="Complete Task">
+					</form>
+				</div>
+				<div class="col">
+					<form action="{% url 'event_delete' ins.id %}" method="POST">
+						{% csrf_token %}
+						<input class="btn btn-outline-danger btn-sm" type="submit" value="Delete Task">
+					</form>
+				</div>
+			</div>
+			<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
 </div>
 
 <!-- Pie Chart -->
@@ -96,23 +96,26 @@
 <br>
 <h2 class="title">My Statistics</h2>
 <br>
-	<div class="row">
-	  <div class="col-8" >
+<div class="row">
+	<div class="col-8">
 		<div id="container-fluid" style="height: 400px; width: 100%;">
-		  <canvas id="pie-chart"></canvas>
+			<canvas id="pie-chart"></canvas>
 		</div>
-	  </div>
-	  <div class="col-2" style="width: 75%;">	
-		<h4>Total Number of Tasks: {{ total }} </h4>
-		<h4>Completed Tasks: {{ cd }} </h4>
-		<h4>In Progress: {{ in_prog }}</h4>
-		<h4>Past Due: {{ pd  }}</h4>
-	  </div>
-	  </div>
 	</div>
+	<div class="col-2" style="width: 75%">
+		<h4>Total Number of Tasks: {{ total }} </h4>
+		&nbsp;
+		<h4>Completed Tasks: {{ cd }} </h4>
+		&nbsp;
+		<h4>In Progress: {{ in_prog }}</h4>
+		&nbsp;
+		<h4>Past Due: {{ pd  }}</h4>
+	</div>
+</div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script type="text/JavaScript">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/JavaScript">
     var config = {
       type: 'pie',
       data: {

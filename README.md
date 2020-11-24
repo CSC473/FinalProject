@@ -34,7 +34,7 @@ $ python3 manage.py migrate
 ```
 7. Launch Final Project
 ```
-$ python3 manage.py runserver
+$ python3 manage.py runserver --insecure
 ```
 8. Open browser and navigate to local server
 (http://localhost:8000/)

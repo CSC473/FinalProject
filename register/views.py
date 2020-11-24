@@ -8,8 +8,9 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-            # messages.success(response, f"You have registered successfully: {username}")
-            return redirect("/")
+            messages.success(response, f"You have registered successfully!")
+            form = RegisterForm()
+            #return redirect("/")
         else:
             messages.error(response, 'Registration failed.')
         

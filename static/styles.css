@@ -6,34 +6,35 @@ input a {
     background-color: #dddddd;
   }
 
+/* side navbar background */
 .sidenav {
   width: fit-content;
   position: fixed;
   z-index: 1;
   top: 20px;
   left: 10px;
-  background: rgb(168, 234, 243);
+  background: lightpink;
   overflow-x: hidden;
   padding: 8px 0;
   height: 100%;
 }
 
+/* side navbar text */
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 22px;
-  color: #131211;
+  color: white;
   display: block;
 }
 
+/* side navbar text hover */
 .sidenav a:hover {
-  color: #064579;
+  color:rgb(56, 2, 35);
 }
 
+
 .button {
-    background-color:  rgb(168, 234, 243);
-    border: none;
-    color: black;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -63,13 +64,15 @@ input a {
 }
 
 .calendar tr, .calendar td {
-  border: 1px solid black;
+  border: 1px solid rgb(117, 80, 112);
 }
 
 .calendar th {
   padding: 10px;
   text-align: center;
   font-size: 18px;
+  background-color: rgb(117, 80, 112);
+  color: white;
 }
 
 .calendar td {
@@ -92,7 +95,7 @@ ul {
 }
 
 a {
-  color: #17a2b8;
+  color: rgb(117, 80, 112);
 }
 
 .left {
@@ -105,8 +108,8 @@ a {
 
 .btn {
   outline: none;
-  color: black;
-  background-color: transparent;
+  color:white;
+  background-color: lightpink; /* change to transparent if a transparent background is wanted */
   box-shadow: 0 0 0 0;
 }
 
@@ -121,9 +124,45 @@ a {
 
 .addtask_form input, .addtask_form select, .addtask_form textarea {
   border-radius: 5px;
-  border: 1px solid #17a2b8;
+  border: 1px solid rgb(117, 80, 112);
   outline: none;
   background: none;
   padding: 5px;
   width: 100%;
 }
+
+
+/* new addition */
+
+/* button to return to the login page from the register page */
+.logo-button {
+  border-radius: 50%; 
+  width: 400px;
+  height: 70px;
+  background-position:top;
+}
+
+/* to change the background of the app change the color */
+.background {
+  background-image: repeating-linear-gradient( pink 10%, aliceblue 20%, white);
+}
+
+/* for login, register page and other buttons */
+.button3, .button, .logo-button{
+  border: rgb(117, 80, 112); 
+  color: white; 
+  background-color: lightpink;
+}
+
+/* for almost all titles used in different pages */
+.display-1, .display-2, .display-3, .display-4, .title
+{
+  color:  rgb(117, 80, 112);
+}
+
+.text-center{
+  background:rgb(117, 80, 112);
+  color: white;
+}
+
+/* to change the notification message, go to home.html */

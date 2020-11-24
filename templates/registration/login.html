@@ -9,33 +9,35 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:;base64,=">
+
 </head>
 
-<body>
+<body class="background">
+
+  <h2 class="display-1" style="text-align: center; margin-top: 100px; margin-bottom: 20px;">Schedule It!</h2>
+
   <main>
-
-
-    {% block title %}
-    <form action="/">
-      <button class="button">Schedule It!</button>
-    </form> {% endblock %}
-
     <div id="content" name="content" class="main">
       <div class="row justify-content-center">
         <div class="col-8">
-          {% block content %}
-          <h2>Log In</h2>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Log In</button>
-          </form>
-          &nbsp;
-          <form action="/register/">
-            <button type="register">Register</button>
-          </form>
-          {% endblock %}
+          <div class="text-left">
 
+            {% block content %}
+            <div id="button2" style="padding: 50px; position: relative;">
+              <h2 class="title">Log In</h2>
+              <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button3" style="margin-bottom:10px; margin-top: 10px">Log In</button>
+              </form>
+              <form action="/register/">
+                <button type="register" class="button3">Register</button>
+              </form>
+            </div>
+            {% endblock %}
+
+          </div>
         </div>
       </div>
     </div>
