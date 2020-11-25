@@ -119,7 +119,6 @@ def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
     if request.method == 'POST':
         instance.delete()
-        messages.success(request, 'You have 0 tasks due today')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     #return render(request, "view_event.html")
