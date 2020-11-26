@@ -9,17 +9,18 @@ from django.test import Client
 
 class EndToEndTest(TestCase):
     
-    def login(self):
+    def test_login(self):
 
         #have a user login 
-        c = Client()
+        self.client = Client()
+        c = self.client
         user1 = User.objects.create_user('bob', 'bob@email.com', 'jeff')
-        login_in = c.login(username = user1.username, password = user1.password)
+        login_in = c.login(username = "bob", password = "jeff")
         self.assertTrue(login_in)
 
         # user adds an event 
         self.factory = RequestFactory()
-        #brb
+
         res = Event.objects.get_or_create({
             'user': user1,
             'title': 'Hello',
@@ -45,4 +46,4 @@ class EndToEndTest(TestCase):
 
         #user logout 
         logout_out = c.logout()
-        self.assertTrue(logout_out)
+        self.assertEqual(logout_out, None)

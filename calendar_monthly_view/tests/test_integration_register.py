@@ -38,12 +38,4 @@ class RegisterFormTest(TestCase):
         self.assertFalse(logged_in)
 
 
-class SignUpTests(TestCase):
-    def test_signup_status_code(self):
-        url = reverse('register')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-    
-    def test_signup_url_resolves_signup_view(self):
-        view = resolve('/register/')
-        self.assertEquals(view.func, register)
+
