@@ -36,7 +36,6 @@ class Calendar(HTMLCalendar):
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):
             cal += f'{self.formatweek(week, events)}\n'
-            
         return cal 
 
     def formatweekly(self, d, withyear = True):
