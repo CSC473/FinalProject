@@ -19,18 +19,17 @@ class EventIntegrationTest(TestCase):
             'start_time': datetime.now(),
             'completed': False,
         })
-        
-        self.assertEqual(res[0].user.username, "john")
-        self.assertEqual(res[0].title, "chicken")
-        self.assertEqual(res[0].completed, False)
-
+    
         self.factory.user = self.user
         request = self.factory.post('/complete/'+ str(res[0].id) +'/') 
 
         req1 = event_complete(request, res[0].id)
         self.assertTrue(req1)
         obj = Event.objects.filter(id=res[0].id)
+
         self.assertTrue(obj[0].completed)
+        self.assertEqual(obj[0].user.username, "john")
+        self.assertEqual(obj[0].title, "chicken")
 
         req = event_delete(request, res[0].id)
         self.assertTrue(req)
