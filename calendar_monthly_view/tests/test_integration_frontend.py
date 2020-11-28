@@ -25,7 +25,6 @@ class FrontendTesting(TestCase):
         response = self.client.get(reverse('home'))
 
 
-
 class CalendarViewTestCase(TestCase):  
 
     factory = RequestFactory()

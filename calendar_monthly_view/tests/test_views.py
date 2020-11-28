@@ -6,9 +6,10 @@ from register.models import UserProfile
 from django.contrib import auth
 from django.test import Client
 from register.views import register
-from calendar_monthly_view.views import view_event
+from datetime import datetime, timedelta, date
+from calendar_monthly_view.views import view_event, prev_month, next_month
 
-class SignUpTests(TestCase):
+class UnitTests(TestCase):
     def test_signup_status_code(self):
         url = reverse('register')
         response = self.client.get(url)
@@ -24,7 +25,6 @@ class SignUpTests(TestCase):
         logged_in = self.client.login(username='john', password='johnpassword')
         url = reverse('view_event')
         response = self.client.get(url)
-        #self.assertValidResponse(response)
         self.assertEquals(response.status_code, 200)
 
     def test_events(self):
@@ -33,10 +33,19 @@ class SignUpTests(TestCase):
         logged_in = self.client.login(username='john', password='johnpassword')
         url = reverse('event')
         response = self.client.get(url)
-        #self.assertValidResponse(response)
         self.assertEquals(response.status_code, 200)
     
 
+class FunctionTests(TestCase):
+    def test_prev_month(self):
+        d = date(2020, 12, 1)
+        month = prev_month(d)
+        self.assertEquals(month, "month=2020-11")
+
+    def test_next_month(self):
+        d = date(2020, 11, 1)
+        month = next_month(d)
+        self.assertEquals(month, "month=2020-12")
 
 
 

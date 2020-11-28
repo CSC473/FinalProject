@@ -27,7 +27,7 @@ class CalendarView(LoginRequiredMixin,generic.ListView):
         # Filter the instances based on the user
         context['instance'] = Event.objects.filter(user=self.request.user)
         user = self.request.user.id
-        #Use today's year and date for the Calendar 
+        # Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month, user)
     
         html_cal = cal.formatmonth(withyear=True)
@@ -48,7 +48,6 @@ def next_month(d):
     last = d.replace(day=days_in_month)
     next_month = last + timedelta(days=1)
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-    #print(month)
     return month
 
 def get_date(req_day):
@@ -120,9 +119,6 @@ def event_delete(request, pk):
     if request.method == 'POST':
         instance.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-    #return render(request, "view_event.html")
-
 
 class WeeklyView(LoginRequiredMixin,generic.ListView):
     login_url = 'login'
