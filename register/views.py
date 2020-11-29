@@ -8,12 +8,10 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-            # messages.success(response, f"You have registered successfully: {username}")
-            return redirect("/")
+            messages.success(response, f"You have registered successfully!")
+            form = RegisterForm()
         else:
-            messages.error(response, 'Registration failed.')
-        
+            messages.error(response, 'Registration failed.')       
     else:
 	    form = RegisterForm()
-
     return render(response, "register.html", {"form":form})

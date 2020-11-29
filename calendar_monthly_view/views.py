@@ -27,7 +27,7 @@ class CalendarView(LoginRequiredMixin,generic.ListView):
         # Filter the instances based on the user
         context['instance'] = Event.objects.filter(user=self.request.user)
         user = self.request.user.id
-        #Use today's year and date for the Calendar 
+        # Use today's year and date for the Calendar 
         cal = Calendar(d.year, d.month, user)
     
         html_cal = cal.formatmonth(withyear=True)
@@ -48,7 +48,6 @@ def next_month(d):
     last = d.replace(day=days_in_month)
     next_month = last + timedelta(days=1)
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-    print(month)
     return month
 
 def get_date(req_day):
@@ -119,11 +118,7 @@ def event_delete(request, pk):
     instance = get_object_or_404(Event, pk= pk)
     if request.method == 'POST':
         instance.delete()
-        messages.success(request, 'You have 0 tasks due today')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-    #return render(request, "view_event.html")
-
 
 class WeeklyView(LoginRequiredMixin,generic.ListView):
     login_url = 'login'
@@ -146,15 +141,11 @@ class WeeklyView(LoginRequiredMixin,generic.ListView):
 
         context['calendar_week'] = mark_safe(html_cal_week) 
 
-        context['prev_week'] = prev_week(d)
-        context['next_week'] = next_week(d)
-
         now = datetime.today().date()
         past = Event.objects.filter(user=self.request.user, completed= False, end_time__lte = now)
         num = 0
         for p in past:
             num +=1
-
 
         messages.info(self.request, 'Notification: You have ' + str(num) + ' tasks due today!')
 
@@ -176,19 +167,3 @@ def event_stats(request):
     instance = Event.objects.filter(user=request.user)
     return render(request, "profile.html")
         
-
-def prev_week(d):
-    prev_week = d - timedelta(days=7)
-    week = 'month=' + str(prev_week.year) + '-' + str(prev_week.month)
-    day = 'day=' + "1 2 3 4 5 6 7"
-    return day 
-
-def next_week(d):
-    next_week = d + timedelta(days=7)
-    #cal = Calendar(d.year, d.month)
-    #html_cal_week = cal.formatweekly(next_week, withyear=True)
-    week = "date=" + str(next_week.year) + '-' + str(next_week.month) + '-' + str(next_week.day)
-    print(week)
-    return next_week
-
-
