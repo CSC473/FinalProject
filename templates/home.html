@@ -7,11 +7,9 @@
 <p id="msg1">
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
-You have successfully logged in!
+You are logged in!
 </p>
 
-
-<a href="{% url 'logout' %}">Logout</a>
 
 &nbsp;
 
