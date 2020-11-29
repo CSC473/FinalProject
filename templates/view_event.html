@@ -96,20 +96,22 @@
 <br>
 <h2 class="title">My Statistics</h2>
 <br>
-<div class="row">
+<div class="row" style="width: 100%">
 	<div class="col-8">
 		<div id="container-fluid" style="height: 400px; width: 100%;">
 			<canvas id="pie-chart"></canvas>
 		</div>
 	</div>
-	<div class="col-2" style="width: 75%">
+	<div class="col ml-md-2 border" id="stats" style="height: 280px;">
+		<br>
 		<h4>Total Number of Tasks: {{ total }} </h4>
 		&nbsp;
 		<h4>Completed Tasks: {{ cd }} </h4>
 		&nbsp;
-		<h4>In Progress: {{ in_prog }}</h4>
+		<h4>In Progress Tasks: {{ in_prog }}</h4>
 		&nbsp;
-		<h4>Past Due: {{ pd  }}</h4>
+		<h4>Past Due Tasks: {{ pd  }}</h4>
+		<br>
 	</div>
 </div>
 </div>

@@ -165,4 +165,8 @@ a {
   color: white;
 }
 
+#stats{
+  color: white; 
+  background-color: rgb(117, 80, 112);
+}
 /* to change the notification message, go to home.html */
