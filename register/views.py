@@ -10,8 +10,7 @@ def register(response):
             form.save()
             form = RegisterForm()
             return redirect("/")
-        else:
-            messages.error(response, 'Registration failed.')       
+      
     else:
 	    form = RegisterForm()
     return render(response, "register.html", {"form":form})
