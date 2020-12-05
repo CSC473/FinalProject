@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head class="background">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,14 +11,7 @@
 </head>
 
 <body class="background">
-    <main>
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
+    <main class="background">
 
         {% load crispy_forms_tags %}
 
@@ -26,14 +19,8 @@
 
             <div class="row justify-content-center">
                 <div>
-                    {% block title %}
-                    <form action="/">
-                        <button class="logo-button">Click to Schedule Your Tasks!</button>
-                    </form>
-                    {% endblock %}
-
                     <h1 class="display-4" style="text-align: center; 
-                                                 margin-top: 30px;"
+                                                 margin-top: 100px;"
                                                  >Create an Account!</h1>
                     <hr class="mt-0 mb-4">
                     {% block content %}
